@@ -1,3 +1,4 @@
+
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -8,7 +9,7 @@ import CalendarPage from './calendarPage.js'
 import BottomTabNavigator from "./BottomTabNavigator";
 import DrawerNavigator from "./DrawerNavigation";
 
-export default function App() {
+export default function viewSelectedTypePage(typr) {
   const dummyData=[{type:'',startTime:'',endTime:'',subTitle:'',}]
   const [items,setItems]=useState([]);
   const [currentDay,setCurrentDay]=useState('');
@@ -16,11 +17,19 @@ export default function App() {
   const monthNames= ["January","February","March","April","May","June","July",
   "August","September","October","November","December"];
 
- 
+  
   return (
-    <NavigationContainer>
-      <DrawerNavigator/>
-    </NavigationContainer>
+<View>
+<SectionList
+      sections={DATA}
+      keyExtractor={(item, index) => item + index}
+      renderItem={({ item }) => <Item title={item} />}
+      renderSectionHeader={({ section: { title } }) => (
+        <Text style={styles.header}>{title}</Text>
+      )}
+    />
+
+</View>
 
   );
 }
